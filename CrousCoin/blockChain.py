@@ -60,7 +60,6 @@ class Block:
 
 class BlockChain:
     def __init__(self):
-        """Initialisation de la class avec une taille de 0 (chaine de bloc vide) et un tableau vide également"""
         self.size = 0
         self.chain = []
 
@@ -76,16 +75,14 @@ class BlockChain:
         return blockchain_repr
 
     def add(self, block):
-        """Fonction permettant d'ajouter un bloc passé en paramètre à une chaine."""
         if block.block_is_full():
-            if self.size != 0:                                      # vérifie que le bloc est complet (contient 5 transactions)
-                block.prev = self.chain[-1].hash                    # le prev du bloc est modifié selon le bloc qui le précède
-                block.pW = block.proofOfWork()
+            if self.size != 0:                                                  # vérifie que le bloc est complet (contient 5 transactions)
+                block.prev = self.chain[-1].hash                                # le prev du bloc est modifié selon le bloc qui le précède
             self.chain.append(block)
-            self.size += 1                                          # vérifie que le bloc est complet (contient 5 transactions) + si la taille est diff de 0 alors     
+            self.size += 1                                                      # vérifie que le bloc est complet (contient 5 transactions) + si la taille est diff de 0 alors     
         else:
-            print("Pour créer un bloc il nous faut 5 transactions") # Ce print n'est jamais affiché car une vérification tiers et toujours effectué.
-                                                                    # Cependant nous laissons ceci pour des tests unitaires
+            print("Pour créer un bloc il nous faut 5 transactions")         # Ce print n'est jamais affiché car une vérification tiers et toujours effectué.
+                                                                                # Cependant nous laissons ceci pour des tests unitaires
 
     def index_block(self, block):
         """Fonction permmettant de récuperer l'indice d'un bloc dans une chaine effectué par une simple boucle 
